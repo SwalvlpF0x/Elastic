@@ -1,0 +1,30 @@
+input
+{
+	file
+	{
+		type => "Microsoft-DNS-Trace-Log"
+		path => "//WinDC1/C$/Data/dns.log"
+		start_position => "beginning"
+	}
+}
+
+filter
+{
+	if [message] !~ /^\d/
+	{
+		drop {}
+	}
+
+	mutate
+	{
+		remove_field => ["path", "@version"]
+	}
+}
+
+output
+{
+	file
+	{
+		path => "C:/Data/%{type}-%{+YYYY-MM-dd-HH-mm}.logstash"
+	}
+}
