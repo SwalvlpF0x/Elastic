@@ -1,0 +1,16 @@
+### Read ForwardedEvents Channel 
+winlogbeat.event_logs:
+    - name: ForwardedEvents
+      api: wineventlog-experimental
+
+### Set registry_file for Channel Read Position
+winlogbeat.registry_file: C:/ProgramData/winlogbeat/.winlogbeat.yml
+
+### Time out before shutdown
+winlogbeat.shutdown_timeout: 30s
+
+### Output to LogStash
+output.logstash:
+    enabled: true
+    hosts: ["127.0.0.1:5044"]
+    compression_level: 1
