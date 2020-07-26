@@ -1,7 +1,6 @@
 ### Read ForwardedEvents Channel 
 winlogbeat.event_logs:
     - name: ForwardedEvents
-      api: wineventlog-experimental
 
 ### Set registry_file for Channel Read Position
 winlogbeat.registry_file: C:/ProgramData/winlogbeat/.winlogbeat.yml
