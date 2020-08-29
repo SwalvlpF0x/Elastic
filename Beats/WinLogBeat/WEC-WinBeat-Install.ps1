@@ -5,9 +5,9 @@
 New-Item -ItemType Directory -Path 'C:\Program Files' -Name Elactic -ErrorAction SilentlyContinue
 
 ###
-Expand-Archive -Path C:\Users\administrator.hq\Downloads\winlogbeat-7.7.0-windows-x86_64.zip -DestinationPath 'C:\Program Files\Elactic' -Force -Verbose
-Rename-Item -Path 'C:\Program Files\Elactic\winlogbeat-7.7.0-windows-x86_64' -NewName 'C:\Program Files\Elactic\winlogbeat' -Force -Verbose
-Rename-Item -Path 'C:\Program Files\Elactic\winlogbeat\winlogbeat.yml' -NewName 'C:\Program Files\Elactic\winlogbeat\winlogbeat.yml.bak' -Force -Verbose
+Expand-Archive -Path C:\Users\administrator.hq\Downloads\winlogbeat-7.7.0-windows-x86_64.zip -DestinationPath 'C:\Elactic' -Force -Verbose
+Rename-Item -Path 'C:\Elactic\winlogbeat-7.7.0-windows-x86_64' -NewName 'C:\Elactic\winlogbeat' -Force -Verbose
+Rename-Item -Path 'C:\Elactic\winlogbeat\winlogbeat.yml' -NewName 'C:\Elactic\winlogbeat\winlogbeat.yml.bak' -Force -Verbose
 
 ### Create WinLogBeat File
 ##########################
@@ -31,5 +31,5 @@ output.logstash:
 ##########################
 
 ### Create New WinLogBeat.yml
-New-Item -ItemType File -Path 'C:\Program Files\Elactic\winlogbeat' -Name winlogbeat.yml -Force -Verbose -ErrorAction SilentlyContinue
-Set-Content -Path 'C:\Program Files\Elactic\winlogbeat\winlogbeat.yml' -Value $WinLogBeatYml -Force -Verbose
+New-Item -ItemType 'File' -Path 'C:\Elactic\winlogbeat' -Name 'winlogbeat.yml' -Force -Verbose
+Set-Content -Path 'C:\Elactic\winlogbeat\winlogbeat.yml' -Value $WinLogBeatYml -Force -Verbose
