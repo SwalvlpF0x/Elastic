@@ -124,24 +124,10 @@ if (Get-Service $ServiceName -ErrorAction SilentlyContinue)
 
 # Start-Process -FilePath "C:\Program Files\Elactic\logStash\bin\logstash.bat" -ArgumentList "-f C:\Program Files\Elactic\logStash\config\LogStash-WinLogBeat-Kafka.conf"
 # Start-Process -FilePath 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -ArgumentList 'C:\Elastic\logStash\bin\logstash.bat" -f "C:\Elastic\logStash\config\LogStash-WinLogBeat-Kafka.conf'
-& "C:\Elastic\logStash\bin\logstash.bat" -f "C:\Elastic\logStash\config\LogStash-WinLogBeat-Kafka.conf"
+# & "C:\Elastic\logStash\bin\logstash.bat" -f "C:\Elastic\logStash\config\LogStash-WinLogBeat-Kafka.conf"
 
 ### Create the new service.
-New-Service `
-    -name $ServiceName `
-    -displayName $ServiceName `
-    -binaryPathName "$LogStashDir\bin\logstash.bat -f $LogStashDir\config\$LogStashConf"
-
-### Attempt to set the service to delayed start using sc config.
-Try
-{
-    Start-Process -FilePath sc.exe -ArgumentList "config $ServiceName start= delayed-auto"
-}
-
-Catch
-{
-    Write-Host -f red "An error occured setting the service to delayed start."
-}
+Start-Process -FilePath C:\Elastic\logStash\lib\nssm.exe -ArgumentList "install $ServiceName $LogStashDir\bin\logstash.bat -f $LogStashDir\config\$LogStashConf"
 
 
 ### Set Service Time (Only in LAB)
